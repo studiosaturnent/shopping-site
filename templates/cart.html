@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Melon Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for melon_obj in melon_list %}
+        <tr>
+            <td>{{ melon_obj.common_name }}</td>
+            <td>{{ melon_obj.quantity }} pcs. </td>
+            <td>${{ "%.2f"|format(melon_obj.price) }}</td> 
+            <td>${{ "%.2f"|format(melon_obj.total) }}</td>
+            <!-- referenced for formatting jinja variables https://support.sendwithus.com/jinja/formatting_numbers/-->
+        </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+
+    <h3>Total: $ {{ melon_total }}</h3>
+
+    <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
+
+{% endblock %}
